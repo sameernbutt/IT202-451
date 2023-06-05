@@ -8,7 +8,19 @@ function bePositive($arr) {
     echo "<br>Processing Array:<br><pre>" . var_export($arr, true) . "</pre>";
     echo "<br>Positive output:<br>";
     //TODO use echo to output all of the values as positive (even if they were originally positive) 
+    foreach($arr as $n){
+        if($n<0){
+            $posN = -$n;
+            echo "$posN<br>\n";
+        }
+        else{
+            echo "$n<br>\n";
+        }
+    }
     //hint: may want to use var_dump() to show final data types
+
+    //UCID snb22
+    //DATE 6-4-23
 }
 echo "Problem 3: Be Positive<br>";
 ?>
