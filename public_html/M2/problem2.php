@@ -13,8 +13,16 @@ function getTotal($arr) {
     }
     //TODO do rounding stuff here
 
-    $t=(int)($t*100+.5);
-    $total = $t/100.00;
+    //TODO do rounding stuff here
+	if(($t*100)%10==0){
+    	$whole = (int) $t;
+    	$decimal = ($t*100-$whole*100);
+        $total = $whole . "." . $decimal;
+    }
+    else{
+    	$t=(int)($t*100+.5);
+        $total = $t/100.00;
+    }
 
     //UCID: snb22
     //DATE: 6-4-23

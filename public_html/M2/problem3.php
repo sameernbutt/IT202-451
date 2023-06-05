@@ -9,12 +9,13 @@ function bePositive($arr) {
     echo "<br>Positive output:<br>";
     //TODO use echo to output all of the values as positive (even if they were originally positive) 
     foreach($arr as $n){
-        if($n<0){
-            $posN = -$n;
+        $num = (float)$n;
+        if($num<0){
+            $posN = -1*$num;
             echo "$posN<br>\n";
         }
         else{
-            echo "$n<br>\n";
+            echo "$num<br>\n";
         }
     }
     //hint: may want to use var_dump() to show final data types
