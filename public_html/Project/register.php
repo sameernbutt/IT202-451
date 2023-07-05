@@ -39,6 +39,7 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
     $hasError = false;
     if (empty($email)) {
         flash("Email must not be empty");
+
         $hasError = true;
     }
     //sanitize
@@ -67,6 +68,7 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
         $hasError = true;
     }
     if (!$hasError) {
+
         //TODO 4
         $hash = password_hash($password, PASSWORD_BCRYPT);
         $db = getDB();
@@ -83,4 +85,5 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
 ?>
 <?php
 require(__DIR__ . "/../../partials/flash.php");
+
 ?>

@@ -30,6 +30,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
     $hasError = false;
     if (empty($email)) {
         flash("Email must not be empty");
+
         $hasError = true;
     }
     //sanitize
@@ -45,6 +46,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
     }
     if (strlen($password) < 8) {
         flash("Password too short");
+
         $hasError = true;
     }
     if (!$hasError) {
@@ -77,4 +79,5 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 ?>
 <?php
 require(__DIR__ . "/../../partials/flash.php");
+
 ?>
