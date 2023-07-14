@@ -1,9 +1,9 @@
 .alert-success {
-    background-color: green
+    background-color: green;
 }
 
 .alert-warning {
-    background-color: yellow;
+    background-color: #5C4033;
 }
 
 .alert-danger {
@@ -11,13 +11,20 @@
 }
 
 .alert-info {
-    background-color: teal;
+    color: #BDBC70;
+    font-size:16;
+    font-weight: bolder;
+    background-color: #3d2b22;
+    height:22px;
 }
-nav li{display: inline; background-color: rebeccapurple;}
-nav li a{color: hotpink}
-input{border-radius: 50%;}
-body{
-    background-color: hotpink;
-    color: rgb(153, 0, 153);
 
+div,h1{font-family: Verdana;}
+nav{ background-color: burlywood; height:25px;}
+a:hover{color:olive; font-weight: bold;}
+nav li{display: inline;}
+nav li a{font-family: Verdana;font-size: 15; color:#5C4033}
+input{border-radius: 15%;}
+body{
+    background-color: olivedrab;
+    color: beige;
 }

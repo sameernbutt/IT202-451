@@ -2,6 +2,7 @@
 require(__DIR__ . "/../../partials/nav.php");
 ?>
 <form onsubmit="return validate(this)" method="POST">
+<h1>Log in</h1>
     <div>
         <label for="email">Email/Username</label>
         <input type="text" name="email" required />
@@ -10,7 +11,7 @@ require(__DIR__ . "/../../partials/nav.php");
         <label for="pw">Password</label>
         <input type="password" id="pw" name="password" required minlength="8" />
     </div>
-    <input type="submit" value="Login" />
+    <input type="submit" value="Log in" />
 </form>
 <script>
     function validate(form) {
@@ -89,7 +90,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
                         } else {
                             $_SESSION["user"]["roles"] = []; //no roles
                         }
-                        flash("Welcome, " . get_username());
+                        flash("Welcome, " . get_username() . "!");
                         die(header("Location: home.php"));
                     } else {
                         flash("Invalid password");
