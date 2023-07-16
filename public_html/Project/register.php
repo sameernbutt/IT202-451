@@ -1,6 +1,7 @@
 <?php
 require(__DIR__ . "/../../partials/nav.php");
 reset_session();
+
 ?>
 <form onsubmit="return validate(this)" method="POST">
     <div>
@@ -12,6 +13,7 @@ reset_session();
         <input type="text" name="username" required maxlength="30" />
     </div>
     <div>
+
         <label for="pw">Password</label>
         <input type="password" id="pw" name="password" required minlength="8" />
     </div>
@@ -87,4 +89,5 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
 ?>
 <?php
 require(__DIR__ . "/../../partials/flash.php");
+
 ?>
