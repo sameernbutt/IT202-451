@@ -5,7 +5,7 @@ is_logged_in(true);
 
 $action = strtolower(trim(se($_POST, "action","", false)));
 if (!empty($action)) {
-    if(se($_POST, "desired_quantity", 0, false)==0){
+    if($action=="update" && se($_POST, "desired_quantity", 0, false)==0){
         $action = "delete";
     }
     $db = getDB();
@@ -38,13 +38,11 @@ if (!empty($action)) {
                 $stmt->execute();
                 flash("Updated item quantity", "success");
             } catch (PDOException $e) {
-                //TODO handle any other update related rules per your proposal
                 error_log(var_export($e, true));
                 flash("Error updating item quantity", "danger");
             }
             break;
         case "delete":
-            flash("Developer: You implement this logic", "warning");
             $query = "DELETE FROM RM_Cart_Alt WHERE id = :cid AND user_id = :uid";
             $stmt = $db->prepare($query);
             $stmt->bindValue(":cid", se($_POST, "cart_id", 0, false), PDO::PARAM_INT);
@@ -55,6 +53,18 @@ if (!empty($action)) {
             } catch (PDOException $e){
                 error_log(var_export($e,true));
                 flash("Error removing item", "danger");
+            }
+            break;
+        case "clear":
+            $query = "DELETE FROM RM_Cart_Alt WHERE user_id = :uid";
+            $stmt = $db->prepare($query);
+            $stmt->bindValue(":uid", get_user_id(), PDO::PARAM_INT);
+            try{
+                $stmt->execute();
+                flash("Cart has been emptied");
+            } catch (PDOException $e){
+                error_log(var_export($e,true));
+                flash("Error clearing the cart", "danger");
             }
             break;
     }
@@ -120,7 +130,17 @@ try {
             </tr>
         <?php endif; ?>
         <tr>
-            <td colspan="100%">Total: <?php se($total, null, 0); ?></td>
+            <td colspan="0%">Total: <?php se($total, null, 0); ?></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                    <form method="POST">
+                        <input type="hidden" name="cart_id" value="<?php se($c, "id"); ?>" />
+                        <input type="hidden" name="action" value="clear" />
+                        <input type="submit" class="btn btn-danger" value="Clear Cart" />
+                    </form>
+            </td>
         </tr>
         </tbody>
     </table>
