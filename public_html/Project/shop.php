@@ -23,7 +23,7 @@ $Category = se($_GET, "Category", "", false);
 $base_query = "SELECT id, name, description, cost, stock, image, Category FROM Products items";
 $total_query = "SELECT count(1) as total FROM Products items";
 //dynamic query
-if(has_role("Admin")){
+if(has_role("Admin") || has_role("Shop Owner")){
     $query = " WHERE 1=1 and stock > 0";
 } 
 else {
@@ -141,7 +141,7 @@ try {
                 <div class="card bg-light">
                     <div class="card-header">
                     <h5 class="card-title"><?php se($item, "name"); ?></h5>
-                    <?php if (has_role("Admin")) : ?>
+                    <?php if (has_role("Admin") || has_role("Shop Owner")) : ?>
                         <a href="admin/edit_item.php?id=<?php se($item, "id"); ?>">Edit</a>                    
                     <?php endif; ?>
                     </div>
