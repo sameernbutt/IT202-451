@@ -12,7 +12,7 @@ if (!empty($action)) {
     switch ($action) {
         case "add":
             $query = "INSERT INTO RM_Cart_Alt (item_id, desired_quantity, unit_price, user_id)
-            VALUES (:iid, :dq, (SELECT cost FROM RM_Items where id = :iid), :uid) ON DUPLICATE KEY UPDATE
+            VALUES (:iid, :dq, (SELECT cost FROM Products where id = :iid), :uid) ON DUPLICATE KEY UPDATE
             desired_quantity = desired_quantity + :dq";
             $stmt = $db->prepare($query);
             $stmt->bindValue(":iid", se($_POST, "item_id", 0, false), PDO::PARAM_INT);
@@ -70,7 +70,7 @@ if (!empty($action)) {
     }
 }
 $query = "SELECT cart.id, item.stock, item.name, cart.unit_price, (cart.unit_price * cart.desired_quantity) as subtotal, cart.desired_quantity
-FROM RM_Items as item JOIN RM_Cart_Alt as cart on item.id = cart.item_id
+FROM Products as item JOIN RM_Cart_Alt as cart on item.id = cart.item_id
  WHERE cart.user_id = :uid";
 $db = getDB();
 $stmt = $db->prepare($query);

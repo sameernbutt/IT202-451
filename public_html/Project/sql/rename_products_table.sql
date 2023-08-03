@@ -1,0 +1,4 @@
+ALTER TABLE RM_Items ADD Category TEXT;
+ALTER TABLE RM_Items ADD Visiblity BOOLEAN;
+ALTER TABLE RM_Items RENAME TO Products;
+
