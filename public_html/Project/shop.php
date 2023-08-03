@@ -22,7 +22,12 @@ $name = se($_GET, "name", "", false);
 $base_query = "SELECT id, name, description, cost, stock, image FROM Products items";
 $total_query = "SELECT count(1) as total FROM Products items";
 //dynamic query
-$query = " WHERE 1=1 and stock > 0"; //1=1 shortcut to conditionally build AND clauses
+if(has_role("Admin")){
+    $query = " WHERE 1=1 and stock > 0";
+} 
+else {
+    $query = " WHERE 1=1 and stock > 0 and Visiblity=1"; //1=1 shortcut to conditionally build AND clauses
+}
 $params = []; //define default params, add keys as needed and pass to execute
 //apply name filter
 if (!empty($name)) {
@@ -47,7 +52,7 @@ try {
 }
 //apply the pagination (the pagination stuff will be moved to reusable pieces later)
 $page = se($_GET, "page", 1, false); //default to page 1 (human readable number)
-$per_page = 3; //how many items to show per page (hint, this could also be something the user can change via a dropdown or similar)
+$per_page = 10; //how many items to show per page (hint, this could also be something the user can change via a dropdown or similar)
 $offset = ($page - 1) * $per_page;
 $query .= " LIMIT :offset, :count";
 $params[":offset"] = $offset;
@@ -130,6 +135,9 @@ try {
                 <div class="card bg-light">
                     <div class="card-header">
                     <h5 class="card-title"><?php se($item, "name"); ?></h5>
+                    <?php if (has_role("Admin")) : ?>
+                        <a href="admin/edit_item.php?id=<?php se($record, "id"); ?>">Edit</a>                    
+                    <?php endif; ?>
                     </div>
                     <?php if (se($item, "image", "", false)) : ?>
                         <img src="<?php se($item, "image"); ?>" class="card-img-top" alt="...">
