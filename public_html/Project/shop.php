@@ -26,7 +26,7 @@ if(has_role("Admin")){
     $query = " WHERE 1=1 and stock > 0";
 } 
 else {
-    $query = " WHERE 1=1 and stock > 0 and Visiblity=1"; //1=1 shortcut to conditionally build AND clauses
+    $query = " WHERE 1=1 and stock > 0 and Visiblity=1"; //1=1 shortcut to conditionally build AND clauses 
 }
 $params = []; //define default params, add keys as needed and pass to execute
 //apply name filter
