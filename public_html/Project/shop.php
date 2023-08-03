@@ -17,9 +17,10 @@ if (!in_array($order, ["asc", "desc"])) {
 }
 //get name partial search
 $name = se($_GET, "name", "", false);
+$Category = se($_GET, "Category", "", false);
 
 //split query into data and total
-$base_query = "SELECT id, name, description, cost, stock, image FROM Products items";
+$base_query = "SELECT id, name, description, cost, stock, image, Category FROM Products items";
 $total_query = "SELECT count(1) as total FROM Products items";
 //dynamic query
 if(has_role("Admin")){
@@ -33,6 +34,10 @@ $params = []; //define default params, add keys as needed and pass to execute
 if (!empty($name)) {
     $query .= " AND name like :name";
     $params[":name"] = "%$name%";
+}
+if (!empty($Category)) {
+    $query .= " AND Category like :Category";
+    $params[":Category"] = "%$Category%";
 }
 //apply column and order sort
 if (!empty($col) && !empty($order)) {
@@ -83,13 +88,14 @@ try {
 <div class="container-fluid">
     <h1>Shop</h1>
     <h2> </h2>
-    <h6>Sort by:</h6>
-
+    <h6>Filter by:</h6>
     <form class="row row-cols-auto g-3 align-items-center">
         <div class="col">
             <div class="input-group" data="i">
                 <div class="input-group-text">Name</div>
                 <input class="form-control" name="name" value="<?php se($name); ?>" />
+                <div class="input-group-text">Category</div>
+                <input class="form-control" name="Category" value="<?php se($Category); ?>" />
             </div>
         </div>
         <div class="col">
@@ -136,7 +142,7 @@ try {
                     <div class="card-header">
                     <h5 class="card-title"><?php se($item, "name"); ?></h5>
                     <?php if (has_role("Admin")) : ?>
-                        <a href="admin/edit_item.php?id=<?php se($record, "id"); ?>">Edit</a>                    
+                        <a href="admin/edit_item.php?id=<?php se($item, "id"); ?>">Edit</a>                    
                     <?php endif; ?>
                     </div>
                     <?php if (se($item, "image", "", false)) : ?>
@@ -145,6 +151,8 @@ try {
 
                     <div class="card-body">
                         <p class="card-text">Description: <?php se($item, "description"); ?></p>
+                        <p class="card-text">Category: <?php se($item, "Category"); ?></p>
+                        <a href="product_details.php?id=<?php se($item, "id"); ?>">View Details</a>                    
                     </div>
                     <div class="card-footer">
                         Cost: <?php se($item, "cost"); ?>

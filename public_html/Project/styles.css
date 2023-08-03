@@ -45,3 +45,7 @@ body{
 div div div div{ color:#5C4033}
 .card-footer form [value="Add to Cart"]{background-color: brown; color:beige; border-color: #3d2b22;}
 .card-footer form [value="Add to Cart"]:hover{background-color:olivedrab}
+div div h4{
+    text-transform: capitalize;
+    text-decoration: underline;
+}
