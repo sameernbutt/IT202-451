@@ -1,12 +1,15 @@
 <?php
 require(__DIR__ . "/../../partials/nav.php");
 
-is_logged_in(true);
+is_logged_in(true,"shop.php");
 
 $action = strtolower(trim(se($_POST, "action","", false)));
 if (!empty($action)) {
     if($action=="update" && se($_POST, "desired_quantity", 0, false)==0){
         $action = "delete";
+    }
+    else if(se($_POST, "desired_quantity", 0, false)<0){
+        $action = "negative";
     }
     $db = getDB();
     switch ($action) {
@@ -67,6 +70,8 @@ if (!empty($action)) {
                 flash("Error clearing the cart", "danger");
             }
             break;
+        case "negative":
+            flash("Cannot have a negative quantity", "danger");
     }
 }
 $query = "SELECT cart.id, item.stock, item.name, cart.unit_price, (cart.unit_price * cart.desired_quantity) as subtotal, cart.desired_quantity
