@@ -50,3 +50,7 @@ div div h4{
     text-decoration: underline;
 }
 div div div div a{color:#223004}
+div table tbody{background-color: beige}
+.table thead th {
+    color: white;
+  }

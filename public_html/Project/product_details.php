@@ -46,4 +46,7 @@ function map_column($col)
             </div>
         <?php endif; ?>
     <?php endforeach; ?>
+    <?php if (has_role("Admin") || has_role("Shop Owner")) : ?>
+            <a href="admin/edit_item.php?id=<?php se($result, "id"); ?>">Edit</a>                    
+    <?php endif; ?>
 </div>
