@@ -1,13 +1,16 @@
 .alert-success {
     background-color: green;
+    color:burlywood;
 }
 
 .alert-warning {
     background-color: #5C4033;
+    color:burlywood;
 }
 
 .alert-danger {
     background-color: red;
+    color:burlywood;
 }
 
 .alert-info {
@@ -15,16 +18,39 @@
     font-size:16;
     font-weight: bolder;
     background-color: #3d2b22;
-    height:22px;
+}
+.navbar-custom {
+    background-color: beige;
+}
+.navbar-custom .navbar-brand,
+        .navbar-custom .navbar-text{
+            color: #3d2b22;
+            font-size: 22;
+        }
+.navbar-custom .navbar-collapse .nav-item .nav-link{
+    color:#223004;
 }
 
+
 div,h1{font-family: Verdana;}
-nav{ background-color: burlywood; height:25px;}
+/*nav [class="container-fluid"]{ background-color: burlywood; height:28px;}*/
 a:hover{color:olive; font-weight: bold;}
 nav li{display: inline;}
-nav li a{font-family: Verdana;font-size: 15; color:#5C4033}
+nav div div ul li a{font-family: Verdana;font-size: 15; color:#223004}
 input{border-radius: 15%;}
 body{
-    background-color: olivedrab;
+    background-color: #223004;
     color: beige;
 }
+div div div div{ color:#5C4033}
+.card-footer form [value="Add to Cart"]{background-color: brown; color:beige; border-color: #3d2b22;}
+.card-footer form [value="Add to Cart"]:hover{background-color:olivedrab}
+div div h4{
+    text-transform: capitalize;
+    text-decoration: underline;
+}
+div div div div a{color:#223004}
+div table tbody{background-color: beige}
+.table thead th {
+    color: white;
+  }
